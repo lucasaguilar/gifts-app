@@ -6,7 +6,7 @@
   <ion-list>
     <ion-item *ngFor="let gift of (gifts | async) ">
       <ion-thumbnail slot="start">
-        <ion-img [src]="domSanitizer.bypassSecurityTrustUrl(gift.url)"></ion-img>
+        <ion-img [src]="gift.url"></ion-img>
       </ion-thumbnail>
       <ion-label (click)="click(gift)"
         >{{ gift.type }} - {{ gift.id }}</ion-label

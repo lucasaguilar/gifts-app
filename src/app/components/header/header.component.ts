@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   noHome() {
-    if (this.router.url === '/home') {
+    if (this.router.url === '/start-page') {
       return false;
     } else {
       return true;
@@ -22,6 +22,6 @@ export class HeaderComponent implements OnInit {
   }
 
   goHome() {
-    this.router.navigate(['home']);
+    this.router.navigate(['start-page']);
   }
 }
