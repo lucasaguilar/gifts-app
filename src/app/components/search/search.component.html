@@ -1,0 +1,17 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <ion-item>
+    <ion-label position="floating"
+      >Search a gift here: <ion-text color="danger">*</ion-text>
+    </ion-label>
+    <ion-input required formControlName="query" type="text"></ion-input>
+  </ion-item>
+
+  <ion-button
+    block
+    color="primary"
+    type="submit"
+    [disabled]="searchForm.invalid"
+  >
+    Search
+  </ion-button>
+</form>

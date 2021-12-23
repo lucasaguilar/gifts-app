@@ -1,0 +1,24 @@
+<app-header titulo="giphy APP..."></app-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item (click)="getGifts()">
+      <ion-icon slot="start" name="clipboard-outline" color="primary"></ion-icon
+      >List of gift
+    </ion-item>
+
+    <ion-item [routerLink]="['/search-page']" routerLinkActive="router-link-active"   >
+      <ion-icon slot="start" name="clipboard-outline" color="primary"></ion-icon
+      >Search a gift
+    </ion-item>
+
+    <ion-item>
+      <ion-icon
+        slot="start"
+        name="clipboard-outline"
+        color="primary"
+      ></ion-icon>
+      About this app...
+    </ion-item>
+  </ion-list>
+</ion-content>
