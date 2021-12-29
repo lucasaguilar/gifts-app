@@ -5,10 +5,11 @@ import { HeaderComponent } from './header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
-  declarations: [HeaderComponent, SearchComponent],
-  exports: [HeaderComponent, SearchComponent],
+  declarations: [HeaderComponent, SearchComponent, ModalComponent],
+  exports: [HeaderComponent, SearchComponent, ModalComponent],
   imports: [CommonModule, IonicModule, ReactiveFormsModule],
 })
 export class ComponentsModule {}

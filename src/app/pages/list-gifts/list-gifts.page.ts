@@ -4,6 +4,8 @@ import { Gift } from 'src/app/models/gift.model';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from './../../../environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ModalController } from '@ionic/angular';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @Component({
   selector: 'app-list-gifts',
@@ -15,7 +17,8 @@ export class ListGiftsPage implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    public domSanitizer: DomSanitizer
+    public domSanitizer: DomSanitizer,
+    private modalCtrl: ModalController
   ) {}
 
   ngOnInit() {
@@ -27,7 +30,19 @@ export class ListGiftsPage implements OnInit {
     console.log(this.gifts);
   }
 
-  click(gift) {
-    console.log(gift);
+  async click(giphy: Gift) {
+    const modal = await this.modalCtrl.create({
+      component: ModalComponent,
+      componentProps: {
+        title: giphy.title,
+        image: giphy.images['480w_still'].url,
+        gifUrl: giphy.embed_url,
+      },
+    });
+    return await modal.present();
+  }
+
+  sanitizeURL(url: any) {
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
