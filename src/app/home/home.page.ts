@@ -17,6 +17,9 @@ export class HomePage implements OnInit {
   countries: Country[];
   textoAbuscar = '';
 
+  color = 'red';
+
+
   constructor(public apiService: ApiService) {
     const myObs = from('Hello world');
 

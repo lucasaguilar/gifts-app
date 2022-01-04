@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export interface Gift {
   id: number;
   type: string;
@@ -5,4 +6,5 @@ export interface Gift {
   title: string;
   images?: any[];
   embed_url: string;
+  pagination: { count: number };
 }

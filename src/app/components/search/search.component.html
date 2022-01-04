@@ -1,4 +1,35 @@
-<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+<ion-searchbar
+  placeholder=""
+  inputmode="text"
+  type="text"
+  (ionChange)="onSearchChange($event)"
+  [debounce]="250"
+  showCancelButton="always"
+  [(ngModel)]="searchWord"
+></ion-searchbar>
+
+<ion-list>
+  <ion-item *ngFor="let gift of gifts">
+    <ion-avatar slot="start">
+      <img [src]="gift.images['480w_still'].url" />
+    </ion-avatar>
+    <ion-label>{{ gift.title }}</ion-label>
+  </ion-item>
+</ion-list>
+
+<div class="empty-state" *ngIf="!gifts">There is no data to be displayed.</div>
+
+<ion-infinite-scroll
+  [disabled]="!gifts"
+  threshold="100px"
+  (ionInfinite)="scrollGiphies($event)"
+>
+  <ion-infinite-scroll-content
+    loading-spinner="none"
+  ></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+<!-- <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
   <ion-item>
     <ion-label position="floating"
       >Search a gift here: <ion-text color="danger">*</ion-text>
@@ -15,3 +46,4 @@
     Search
   </ion-button>
 </form>
+ -->

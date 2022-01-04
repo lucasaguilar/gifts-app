@@ -1,8 +1,9 @@
 <app-header titulo="List of gifts..."></app-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" >
+
   <ion-list>
-    <ion-item *ngFor="let gift of (gifts | async) " (click)="click(gift)" >
+    <ion-item [class]="customClass"  *ngFor="let gift of (giftsObject) " (click)="click(gift)" >
       <ion-thumbnail slot="start">
         <ion-img [src]="gift.images['480w_still'].url"></ion-img>
       </ion-thumbnail>

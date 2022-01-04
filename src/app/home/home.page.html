@@ -12,7 +12,7 @@
 
   <ion-list>
     <ion-item *ngFor="let pais of (paises | async) | filtro:textoAbuscar">
-      <ion-label (click)="click(pais)"
+      <ion-label [class]="customClass" [style.color]="color" (click)="click(pais)"
         >{{ pais.name }} - {{ pais.capital }}</ion-label
       >
     </ion-item>

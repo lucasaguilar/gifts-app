@@ -13,7 +13,9 @@ import { ModalComponent } from 'src/app/components/modal/modal.component';
   styleUrls: ['./list-gifts.page.scss'],
 })
 export class ListGiftsPage implements OnInit {
-  gifts: Observable<Gift[]>;
+  gifts: Observable<any>;
+  giftsObject: Gift[];
+  customClass = 'customClass';
 
   constructor(
     private apiService: ApiService,
@@ -22,12 +24,13 @@ export class ListGiftsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.gifts = this.apiService.getAllGifts(
+    this.apiService.getAllGifts(
       environment.urlForGifs,
       environment.apiKeyForgiphy
-    );
-
-    console.log(this.gifts);
+    ).subscribe(data => {
+      console.log(data);
+      this.giftsObject = data.gifts;
+    });
   }
 
   async click(giphy: Gift) {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Injectable } from '@angular/core';
 import { Http, HttpOptions, HttpResponse } from '@capacitor-community/http';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
@@ -14,7 +15,7 @@ export class ApiService {
   // eslint-disable-next-line @typescript-eslint/member-ordering
   readonly countriesReadOnly = this.countries.asObservable();
   dataStoreCountries: { countries: any[] } = { countries: [] };
-  dataStoreGifts: { gifts: Gift[] } = { gifts: [] };
+  dataStoreGifts: { gifts: Gift[], pagination: number } = { gifts: [], pagination : 0 };
 
   constructor() {}
 
@@ -56,17 +57,28 @@ export class ApiService {
     );
   }
 
-  getAllGifts(url: string, apiKey: string): Observable<Gift[]> {
+  getAllGifts(
+    url: string,
+    apiKey: string,
+    offset = 0,
+    q = ''
+  ): Observable<any> {
     const options: HttpOptions = {
       url,
-      params: { api_key: apiKey },
+      params: {
+        api_key: apiKey,
+        offset: offset.toString(),
+        q: q
+      },
     };
 
     return from(Http.get(options)).pipe(
-      map((data) => {
-        //console.log(data.data);
-        this.dataStoreGifts.gifts = data.data.data;
-        return this.dataStoreGifts.gifts;
+      map((result) => {
+        // console.log(data.data);
+        this.dataStoreGifts.gifts = result.data.data;
+        this.dataStoreGifts.pagination = result.data.pagination.count;
+        // return object observable with array gift and pagination
+        return this.dataStoreGifts;
       })
     );
   }
